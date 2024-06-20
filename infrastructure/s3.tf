@@ -1,8 +1,7 @@
 resource "aws_s3_bucket_lifecycle_configuration" "data_lake" {
   bucket = "my-data-lake-bucket"
-  aws_s3_bucket_acl    = "private"
 
-  lifecycle_rule {
+  rule {
     
     id      = "move-to-glacier"
     enabled = true
