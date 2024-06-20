@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "data_lake" {
+resource "aws_s3_bucket" "data_lake1" {
   bucket = "data-lake-bucket"
   acl    = "private"
 
