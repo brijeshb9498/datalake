@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "data_lake" {
-  bucket = "my-data-lake-bucket"
+  bucket = "data-lake-bucket"
   acl    = "private"
 
   lifecycle_rule {
