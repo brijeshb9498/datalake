@@ -29,8 +29,8 @@ resource "aws_iam_policy" "sftp_policy" {
           "s3:PutObject"
         ]
         Resource = [
-          "arn:aws:s3:::my-data-lake-bucket",
-          "arn:aws:s3:::my-data-lake-bucket/*"
+          "arn:aws:s3:::data-lake-bucket",
+          "arn:aws:s3:::data-lake-bucket/*"
         ]
       }
     ]
@@ -43,7 +43,7 @@ resource "aws_iam_role_policy_attachment" "sftp_role_attach" {
 }
 resource "aws_transfer_user" "sftp_user" {
   user_name   = "agency_user"
-  server_id   = aws_transfer_server.sftp.id
+  server_id   = aws_transfer_server.sftp1.id
   role        = aws_iam_role.sftp_role.arn
   home_directory = "/my-data-lake-bucket/agency_user"
   policy      = jsonencode({
@@ -52,7 +52,7 @@ resource "aws_transfer_user" "sftp_user" {
       {
         Effect = "Allow"
         Action = "s3:ListBucket"
-        Resource = "arn:aws:s3:::my-data-lake-bucket"
+        Resource = "arn:aws:s3:::data-lake-bucket"
       },
       {
         Effect = "Allow"
@@ -60,7 +60,7 @@ resource "aws_transfer_user" "sftp_user" {
           "s3:GetObject",
           "s3:PutObject"
         ]
-        Resource = "arn:aws:s3:::my-data-lake-bucket/agency_user/*"
+        Resource = "arn:aws:s3:::data-lake-bucket/agency_user/*"
       }
     ]
   })
