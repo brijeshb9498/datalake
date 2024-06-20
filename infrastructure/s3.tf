@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "data_lake" {
+resource "aws_s3_bucket_lifecycle_configuration" "data_lake" {
   bucket = "my-data-lake-bucket"
   acl    = "private"
 
